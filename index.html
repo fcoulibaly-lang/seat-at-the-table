@@ -1,0 +1,496 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>A Seat at the Table</title>
+<meta name="description" content="Start a genuine friendship with an international student, one ordinary invitation at a time.">
+<style>body{margin:0}img{max-width:100%}</style>
+</head>
+<body>
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,500;6..72,600&family=Figtree:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: circle header + next Table night; main column = time with God (private) then the circle; sidebar = our story timeline and the shared cookbook. */
+:root{
+  --bg:#F3F5F3; --surface:#FFFFFF; --ink:#1C2622; --muted:#5A6862; --line:#DCE3DF;
+  --accent:#2F5D50; --accent-ink:#FFFFFF; --soft:#E3EEE9;
+  --saffron:#A86A0C; --saffron-bg:#F7ECD6; --plum:#6B3E6E; --plum-bg:#F1E6F1;
+  --read:"Newsreader", Georgia, serif;
+  --ui:"Figtree", "Segoe UI", system-ui, sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#111715; --surface:#19211E; --ink:#E5ECE8; --muted:#A0B0A9; --line:#2A3632;
+  --accent:#7FC3AE; --accent-ink:#0F1714; --soft:#1F302A;
+  --saffron:#E8B45A; --saffron-bg:#33281A; --plum:#D7A6DA; --plum-bg:#2E2030; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#111715; --surface:#19211E; --ink:#E5ECE8; --muted:#A0B0A9; --line:#2A3632;
+  --accent:#7FC3AE; --accent-ink:#0F1714; --soft:#1F302A;
+  --saffron:#E8B45A; --saffron-bg:#33281A; --plum:#D7A6DA; --plum-bg:#2E2030; color-scheme:dark}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{background:var(--bg);color:var(--ink);font-family:var(--ui);font-size:16px;line-height:1.55}
+.wrap{max-width:1160px;margin:0 auto;padding-block:28px 48px;padding-inline:16px;display:grid;gap:22px}
+.hero{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:26px;display:grid;grid-template-columns:minmax(0,1fr) 330px;gap:24px;align-items:center}
+.eyebrow{font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--accent)}
+h1{font-family:var(--read);font-weight:600;font-size:clamp(32px,4.6vw,46px);margin:2px 0 6px;line-height:1.05}
+.lede{margin:0;color:var(--muted);max-width:60ch}
+.circle{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+.person{display:flex;gap:8px;align-items:center;background:var(--bg);border-radius:999px;padding:4px 12px 4px 4px}
+.av{width:34px;height:34px;border-radius:50%;display:block;overflow:hidden;flex:none}
+.av svg{display:block}
+.scene{grid-column:1/-1;border-top:1px solid var(--line);padding-top:18px}
+.person b{font-size:14px}
+.person span{font-size:12px;color:var(--muted);display:block;line-height:1.2}
+.tablecard{background:var(--saffron-bg);border-radius:12px;padding:18px;display:grid;gap:6px}
+.tablecard small{font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--saffron)}
+.tablecard b{font-family:var(--read);font-size:22px;line-height:1.2}
+.tablecard p{margin:0;font-size:15px}
+.kitchens{display:flex;gap:6px;margin-top:4px}
+.kitchens .av{width:28px;height:28px;font-size:12px;border:2px solid var(--saffron-bg)}
+.pair{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,420px);gap:22px;align-items:stretch}
+.pair>section{align-content:start}
+.main,.side{display:grid;gap:22px;min-width:0}
+section{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:22px;display:grid;gap:14px}
+h2{font-family:var(--read);font-weight:600;font-size:23px;margin:0}
+.sub{margin:-8px 0 0;color:var(--muted);font-size:15px}
+.private-tag{display:inline-flex;gap:6px;align-items:center;font-size:12px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--plum);background:var(--plum-bg);padding:3px 10px;border-radius:999px;justify-self:start}
+.abide{border-left:4px solid var(--plum)}
+.verse{font-family:var(--read);font-size:22px;line-height:1.5;margin:0}
+.ref{font-size:14px;color:var(--muted);margin-top:-6px}
+.invite{background:var(--plum-bg);border-radius:10px;padding:12px 14px;font-size:15px}
+label.f{font-size:14px;font-weight:600;display:block;margin-bottom:6px}
+textarea,input[type=text]{width:100%;font:inherit;font-size:15px;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:10px 12px}
+textarea{min-height:96px;resize:vertical}
+textarea:focus,input[type=text]:focus{outline:2px solid var(--accent);outline-offset:1px}
+.btn{all:unset;cursor:pointer;font-weight:600;font-size:15px;padding:10px 18px;border-radius:8px;background:var(--accent);color:var(--accent-ink);text-align:center}
+.btn.plum{background:var(--plum);color:#fff}
+.btn.ghost{background:transparent;color:var(--accent);border:1.5px solid var(--accent)}
+.btn.small{font-size:14px;padding:6px 12px}
+.btn:focus-visible,.tog:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.toast{font-size:14px;font-weight:600;color:var(--accent);min-height:1.2em}
+.journal{display:grid;gap:10px}
+.entry{border:1px solid var(--line);border-radius:10px;padding:12px 14px}
+.entry small{font-size:12px;color:var(--muted);font-weight:600}
+.entry p{margin:2px 0 0}
+.first{display:flex;gap:12px;align-items:center;background:var(--soft);border-radius:10px;padding:12px 14px}
+.first b{font-family:var(--read);font-size:30px;color:var(--accent);line-height:1;font-variant-numeric:tabular-nums}
+.first span{font-size:15px}
+.posts{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+.post{border:1px solid var(--line);border-radius:10px;padding:14px;display:grid;gap:8px}
+.post-head{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.post-head b{font-size:15px}
+.ptype{font-size:12px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:2px 8px;border-radius:4px}
+.ptype.celebrate{background:var(--saffron-bg);color:var(--saffron)}
+.ptype.carry{background:var(--plum-bg);color:var(--plum)}
+.ptype.encourage{background:var(--soft);color:var(--accent)}
+.post p{margin:0}
+.reacts{display:flex;flex-wrap:wrap;gap:8px;align-items:center;font-size:14px;color:var(--muted)}
+.compose{border-top:1px solid var(--line);padding-top:14px;display:grid;gap:10px}
+.types{display:flex;flex-wrap:wrap;gap:8px}
+.tog{all:unset;cursor:pointer;font-size:14px;font-weight:600;padding:6px 12px;border-radius:6px;border:1px solid var(--line)}
+.tog[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.gate{background:var(--plum-bg);border-radius:10px;padding:14px;display:grid;gap:10px}
+.gate p{margin:0}
+.timeline{list-style:none;margin:0;padding:0;display:grid}
+.tl{display:grid;grid-template-columns:22px minmax(0,1fr);gap:12px;position:relative;padding-bottom:18px}
+.tl:last-child{padding-bottom:0}
+.tl::before{content:"";position:absolute;left:10px;top:20px;bottom:0;width:2px;background:var(--line)}
+.tl:last-child::before{display:none}
+.dot{width:22px;height:22px;border-radius:50%;background:var(--soft);border:2px solid var(--accent);margin-top:2px}
+.tl.future .dot{border-style:dashed;background:var(--surface)}
+.tl small{font-size:12px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--muted)}
+.tl b{display:block}
+.tl p{margin:2px 0 0;font-size:15px;color:var(--muted)}
+.addmoment{display:grid;gap:8px;border-top:1px solid var(--line);padding-top:12px}
+.recipes{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+.recipe{border:1px solid var(--line);border-top:3px solid var(--saffron);border-radius:10px;padding:14px;display:grid;gap:6px}
+.recipe .name{font-family:var(--read);font-size:19px;font-weight:600}
+.recipe .by{display:flex;gap:8px;align-items:center;font-size:14px;color:var(--muted)}
+.recipe .by .av{width:24px;height:24px;font-size:11px}
+.recipe p{margin:0;font-size:15px}
+.recipe .q{font-style:italic;color:var(--muted)}
+.ex{font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);border:1px dashed var(--line);border-radius:4px;padding:1px 6px}
+.demobar{background:var(--accent);color:var(--accent-ink);padding-block:10px;padding-inline:16px}
+.demobar-in{max-width:1160px;margin:0 auto;display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center;justify-content:space-between;font-size:14px}
+.demobar .btn{background:var(--accent-ink);color:var(--accent)}
+.demobar .btn.ghost.light{background:transparent;color:var(--accent-ink);border-color:var(--accent-ink)}
+.tour-veil{position:fixed;inset:0;background:rgba(10,15,12,.55);z-index:60}
+.tour-focus{position:relative;z-index:61;box-shadow:0 0 0 4px var(--saffron),0 0 0 9999px rgba(10,15,12,.55)!important;border-radius:12px}
+.tour-card{position:fixed;z-index:70;left:50%;transform:translateX(-50%);bottom:calc(16px + env(safe-area-inset-bottom,0px));width:min(520px,calc(100% - 32px));background:var(--surface);color:var(--ink);border-radius:14px;padding:20px;box-shadow:0 18px 50px rgba(0,0,0,.3);display:grid;gap:8px}
+.tour-card.center{bottom:auto;top:50%;transform:translate(-50%,-50%)}
+.tour-step{font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--saffron)}
+.tour-card h3{font-family:var(--read);font-size:24px;margin:0;line-height:1.2}
+.tour-card p{margin:0;color:var(--muted)}
+.tour-try{background:var(--saffron-bg);border-radius:8px;padding:10px 12px;font-size:15px}
+.tour-nav{margin-top:6px}
+.tour-skip{all:unset;cursor:pointer;margin-left:auto;font-size:14px;color:var(--muted);text-decoration:underline}
+.tour-skip:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.closing{background:linear-gradient(135deg,#2F5D50,#1F4038);color:#fff;border:0;border-radius:14px;padding:32px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:28px;align-items:center}
+.closing h2{color:#fff;font-size:clamp(26px,3.6vw,34px);line-height:1.15}
+.eyebrow.light{color:#F3C873}
+.closing-verse{font-family:var(--read);font-size:20px;line-height:1.5;margin:10px 0 0;color:#F1F5F3}
+.closing-ref{font-size:13px;color:#BFD3CB;margin:4px 0 0}
+.steps3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.s3{background:rgba(255,255,255,.1);border-radius:10px;padding:16px;display:grid;gap:6px;align-content:start}
+.s3 b{color:#F3C873;font-size:15px}
+.s3 span{font-size:15px;color:#EAF1EE}
+@media (max-width:900px){.closing{grid-template-columns:minmax(0,1fr)}.steps3{grid-template-columns:minmax(0,1fr)}}
+footer{font-size:13px;color:var(--muted);text-align:center}
+@media (max-width:980px){.pair{grid-template-columns:minmax(0,1fr)}}
+@media (max-width:760px){.hero{grid-template-columns:minmax(0,1fr)}}
+
+.pairhead{display:grid;gap:10px}
+.newfriend{background:var(--saffron-bg);border-radius:12px;padding:18px;display:grid;gap:8px}
+.newfriend small{font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--saffron)}
+.nf-row{display:flex;gap:12px;align-items:center}
+.nf-row .av{width:52px;height:52px}
+.nf-row b{font-family:var(--read);font-size:22px;display:block;line-height:1.1}
+.promise{border-top:1px solid rgba(0,0,0,.08);padding-top:8px;font-size:14px}
+.caption{font-size:13px;color:var(--muted);text-align:center;margin-top:6px}
+.cards2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.card{border:1px solid var(--line);border-radius:12px;padding:16px;display:grid;gap:10px;align-content:start}
+.card-head{display:flex;gap:10px;align-items:center}
+.card-head .av{width:44px;height:44px}
+.card-head b{font-size:17px}
+.card-head span{display:block;font-size:13px;color:var(--muted)}
+.fact{display:grid;gap:1px}
+.fact small{font-size:12px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--muted)}
+.ideas{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px}
+.idea{border:1px solid var(--line);border-radius:12px;padding:16px;display:grid;gap:8px;align-content:start}
+.idea .why{font-size:13px;color:var(--muted)}
+.idea b{font-size:16px}
+.labels{display:flex;flex-wrap:wrap;gap:6px}
+.lab{font-size:12px;font-weight:700;letter-spacing:.03em;padding:2px 8px;border-radius:4px}
+.lab.fun{background:var(--soft);color:var(--accent)}
+.lab.faith{background:var(--plum-bg);color:var(--plum)}
+.lab.host{background:var(--saffron-bg);color:var(--saffron)}
+.idea.sent{background:var(--soft);border-color:transparent}
+.checkin{background:var(--saffron-bg);border-radius:12px;padding:16px;display:grid;gap:10px}
+.checkin p{margin:0}
+.feel{display:flex;flex-wrap:wrap;gap:8px}
+.next{background:var(--surface);border-radius:8px;padding:10px 12px;font-size:15px}
+@media (max-width:760px){.cards2{grid-template-columns:minmax(0,1fr)}}
+</style>
+
+<div class="demobar"><div class="demobar-in">
+  <span><strong>Demo</strong> · You're Awa, starting a new friendship with Mei. Try anything; nothing is shared.</span>
+  <span class="row" style="gap:8px"><button class="btn small" id="tourBtn">Take the tour</button><button class="btn small ghost light" id="resetBtn">Reset demo</button></span>
+</div></div>
+<div class="tour-veil" id="veil" hidden></div>
+<div class="tour-card" id="tour" role="dialog" aria-modal="false" aria-labelledby="tourTitle" hidden>
+  <div class="tour-step" id="tourStep"></div>
+  <h3 id="tourTitle"></h3>
+  <p id="tourText"></p>
+  <div class="tour-try" id="tourTry" hidden></div>
+  <div class="row tour-nav"><button class="btn small ghost" id="tourBack">Back</button><button class="btn small" id="tourNext">Next</button><button class="tour-skip" id="tourSkip">Skip tour</button></div>
+</div>
+
+<div class="wrap">
+  <header class="hero" id="t-hero">
+    <div class="pairhead">
+      <div class="eyebrow">Friendship · food · faith · joy</div>
+      <h1>A Seat at the Table</h1>
+      <p class="lede">Helps anyone start a genuine friendship with an international student: a neighbor, classmate, coworker, church member, volunteer, or another student. One ordinary invitation at a time, around food, with room for each person to meet God for themselves.</p>
+    </div>
+    <div class="newfriend" id="t-pair">
+      <small>Your new friendship</small>
+      <div class="nf-row"><span id="meiAv"></span><div><b>Mei</b><span style="font-size:14px;color:var(--muted)">From Chengdu, China · arrived in August</span></div></div>
+      <p style="margin:0;font-size:15px">You met at a campus welcome dinner on Oct 18.</p>
+      <div class="promise">Our promise: this friendship isn't conditional. It doesn't depend on what either of us believes.</div>
+    </div>
+    <div class="scene">
+      <div id="scene"></div>
+      <div class="caption">A true story (names changed): it started with “Need a ride?” In 2019, after volunteering, Rachel offered Awa a ride to get her hair done. Years later, Awa, Rachel, Tobi and Priya are still family: two in Cincinnati, two in other states.</div>
+    </div>
+  </header>
+
+  <section id="t-know" aria-labelledby="h-know">
+    <h2 id="h-know">Get to know each other</h2>
+    <p class="sub">You each filled out a short card. Genuine invitations start from what the other person actually needs and enjoys.</p>
+    <div class="cards2" id="cards"></div>
+  </section>
+
+  <section id="t-ideas" aria-labelledby="h-ideas">
+    <h2 id="h-ideas">Invitation ideas</h2>
+    <p class="sub">Based on your cards. Small and ordinary is enough. Every idea says honestly what it is.</p>
+    <div class="ideas" id="ideas"></div>
+  </section>
+
+  <div class="pair">
+    <section class="abide" id="t-abide" aria-labelledby="h-abide">
+      <span class="private-tag">🔒 Only you see this</span>
+      <h2 id="h-abide">Time with God first</h2>
+      <p class="sub">A new friend can't be your project, and they can't replace God for you either. Bring your friendship to Him first. Mei has her own private space too, wherever she is with God.</p>
+      <p class="verse">"Let each of you look not only to his own things, but each of you also to the things of others."</p>
+      <div class="ref">Philippians 2:4 · World English Bible</div>
+      <div class="invite">Try praying for Mei by name: for her family far away, her classes, and the things she shared on her card.</div>
+      <div>
+        <label class="f" for="jText">Talk to God</label>
+        <textarea id="jText" placeholder="God, today I..."></textarea>
+      </div>
+      <div class="row"><button class="btn plum" id="saveJ">Keep it between me and God</button><span class="toast" id="jToast"></span></div>
+      <div class="first"><b id="firstCount">0</b><span>times this month you prayed before you planned</span></div>
+      <div class="journal" id="journal"></div>
+    </section>
+
+    <section id="t-story" aria-labelledby="h-story">
+      <h2 id="h-story">Our story so far</h2>
+      <p class="sub">Every friendship is built one invitation at a time.</p>
+      <div id="checkin"></div>
+      <ol class="timeline" id="timeline"></ol>
+    </section>
+  </div>
+
+  <section id="t-cook" aria-labelledby="h-cook">
+    <h2 id="h-cook">Dishes we've shared</h2>
+    <p class="sub">Friendship goes both ways. Each person brings a dish from home and the story behind it.</p>
+    <div class="recipes" id="recipes"></div>
+    <div class="addmoment">
+      <label class="f" for="rName">Add a dish</label>
+      <input type="text" id="rName" placeholder="Dish name">
+      <textarea id="rStory" style="min-height:70px" placeholder="Who taught you to make it? When do you eat it?"></textarea>
+      <button class="btn small" id="addR" style="justify-self:start">Add dish</button>
+    </div>
+  </section>
+
+  <section class="closing" aria-labelledby="h-close">
+    <div class="closing-text">
+      <div class="eyebrow light">Pull up a chair</div>
+      <h2 id="h-close">It started with “Need a ride?”</h2>
+      <p class="closing-verse">"Breaking bread at home, they took their food with gladness and singleness of heart."</p>
+      <p class="closing-ref">Acts 2:46 · World English Bible</p>
+    </div>
+    <div class="steps3">
+      <div class="s3"><b>1. Invite someone</b><span>A ride to a hair appointment, a grocery run, a festival. Small and ordinary is enough.</span></div>
+      <div class="s3"><b>2. Share a meal</b><span>Ask them to teach you a dish from home, then cook it together.</span></div>
+      <div class="s3"><b>3. Keep showing up</b><span>Celebrate the good days. Sit with them in the hard ones.</span></div>
+    </div>
+  </section>
+
+  <footer>Prototype. Inspired by a real friendship, with names changed for privacy. Mei and everything about her are made up.</footer>
+</div>
+
+<script>
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const load=(k,d)=>{try{const v=localStorage.getItem(k);return v?JSON.parse(v):d;}catch(e){return d;}};
+const save=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v));}catch(e){}};
+const people={
+  fatoumata:{name:"Awa",life:"Single · Mali & Rwanda",color:"#2F5D50",skin:"#7A4A2E",hair:"braids",hairColor:"#1B1310",inches:65,build:69},
+  kayla:{name:"Rachel",life:"Married · mom · USA",color:"#A86A0C",skin:"#F2CBAE",hair:"bob",hairColor:"#8A5A3B",inches:70,build:80},
+  kachi:{name:"Tobi",life:"Single · Nigeria",color:"#3E5C9A",skin:"#4E301F",hair:"short",hairColor:"#140E0B",inches:71,build:72},
+  saniya:{name:"Priya",life:"Married · mom · India",color:"#6B3E6E",skin:"#A8704A",hair:"long",hairColor:"#16100D",inches:63,build:62},
+  mei:{name:"Mei",life:"Student · China",color:"#B5466B",skin:"#E9C3A0",hair:"bob",hairColor:"#15100D",inches:63,build:62}
+};
+const ME="fatoumata", FRIEND="mei";
+function hairBack(p,cx,cy,r){
+  if(p.hair==="long") return `<path d="M${cx-r-2} ${cy-2} Q${cx-r-6} ${cy+r*2.4} ${cx-r+4} ${cy+r*2.6} L${cx+r-4} ${cy+r*2.6} Q${cx+r+6} ${cy+r*2.4} ${cx+r+2} ${cy-2} Z" fill="${p.hairColor}"/>`;
+  if(p.hair==="bob") return `<path d="M${cx-r-3} ${cy} Q${cx-r-4} ${cy+r*1.3} ${cx-r+2} ${cy+r*1.25} L${cx+r-2} ${cy+r*1.25} Q${cx+r+4} ${cy+r*1.3} ${cx+r+3} ${cy} Z" fill="${p.hairColor}"/>`;
+  if(p.hair==="braids"){let s="";for(let i=-3;i<=3;i++){if(Math.abs(i)<2)continue;s+=`<rect x="${cx+i*r*0.32-r*0.12}" y="${cy}" width="${r*0.24}" height="${r*2.1}" rx="${r*0.12}" fill="${p.hairColor}"/>`;}return s;}
+  return "";
+}
+function hairFront(p,cx,cy,r){
+  if(p.hair==="short") return `<path d="M${cx-r} ${cy-r*0.15} Q${cx-r} ${cy-r*1.2} ${cx} ${cy-r*1.1} Q${cx+r} ${cy-r*1.2} ${cx+r} ${cy-r*0.15} Q${cx} ${cy-r*0.75} ${cx-r} ${cy-r*0.15} Z" fill="${p.hairColor}"/>`;
+  if(p.hair==="braids") return `<path d="M${cx-r-1} ${cy+r*0.1} Q${cx-r-2} ${cy-r*1.3} ${cx} ${cy-r*1.25} Q${cx+r+2} ${cy-r*1.3} ${cx+r+1} ${cy+r*0.1} Q${cx+r*0.6} ${cy-r*0.6} ${cx} ${cy-r*0.55} Q${cx-r*0.6} ${cy-r*0.6} ${cx-r-1} ${cy+r*0.1} Z" fill="${p.hairColor}"/>`;
+  if(p.hair==="bob") return `<path d="M${cx-r-3} ${cy+r*0.2} Q${cx-r} ${cy-r*1.3} ${cx+r*0.2} ${cy-r*1.15} Q${cx+r+4} ${cy-r} ${cx+r+3} ${cy+r*0.2} Q${cx+r*0.3} ${cy-r*0.7} ${cx-r*0.2} ${cy-r*0.45} Q${cx-r*0.8} ${cy-r*0.2} ${cx-r-3} ${cy+r*0.2} Z" fill="${p.hairColor}"/>`;
+  return `<path d="M${cx-r-2} ${cy+r*0.2} Q${cx-r} ${cy-r*1.3} ${cx} ${cy-r*1.15} Q${cx+r} ${cy-r*1.3} ${cx+r+2} ${cy+r*0.2} Q${cx+r*0.4} ${cy-r*0.65} ${cx} ${cy-r*0.4} Q${cx-r*0.4} ${cy-r*0.65} ${cx-r-2} ${cy+r*0.2} Z" fill="${p.hairColor}"/>`;
+}
+function face(p,cx,cy,r){
+  const lw=Math.max(1.1,r*0.09);
+  return `${hairBack(p,cx,cy,r)}<circle cx="${cx}" cy="${cy}" r="${r}" fill="${p.skin}"/>${hairFront(p,cx,cy,r)}
+    <circle cx="${cx-r*0.55}" cy="${cy+r*0.32}" r="${r*0.2}" fill="#F08A8A" opacity=".45"/><circle cx="${cx+r*0.55}" cy="${cy+r*0.32}" r="${r*0.2}" fill="#F08A8A" opacity=".45"/>
+    <path d="M${cx-r*0.5} ${cy+r*0.05} q${r*0.16} -${r*0.24} ${r*0.32} 0 M${cx+r*0.18} ${cy+r*0.05} q${r*0.16} -${r*0.24} ${r*0.32} 0" fill="none" stroke="#1a1a1a" stroke-width="${lw}" stroke-linecap="round"/>
+    <path d="M${cx-r*0.38} ${cy+r*0.3} Q${cx} ${cy+r*0.95} ${cx+r*0.38} ${cy+r*0.3} Z" fill="#5B1F24"/>
+    <path d="M${cx-r*0.3} ${cy+r*0.34} L${cx+r*0.3} ${cy+r*0.34} Q${cx} ${cy+r*0.48} ${cx-r*0.3} ${cy+r*0.34} Z" fill="#fff"/>`;
+}
+const av=id=>{const p=people[id];return `<span class="av" style="background:${p.color}" aria-hidden="true"><svg viewBox="0 0 40 40" width="100%" height="100%"><rect x="9" y="30" width="22" height="14" rx="7" fill="${p.color}" style="filter:brightness(.8)"/>${face(p,20,20,10.5)}</svg></span>`;};
+function flag(code,x,y,w,hh){
+  const clip=`<rect x="${x}" y="${y}" width="${w}" height="${hh}" rx="2" fill="none" stroke="rgba(0,0,0,.25)" stroke-width="1"/>`;
+  const h3=hh/3,w3=w/3;
+  let f="";
+  if(code==="IN") f=`<rect x="${x}" y="${y}" width="${w}" height="${h3}" fill="#FF9933"/><rect x="${x}" y="${y+h3}" width="${w}" height="${h3}" fill="#fff"/><rect x="${x}" y="${y+2*h3}" width="${w}" height="${h3}" fill="#138808"/><circle cx="${x+w/2}" cy="${y+hh/2}" r="${h3*0.38}" fill="none" stroke="#000080" stroke-width="1.2"/>`;
+  if(code==="NG") f=`<rect x="${x}" y="${y}" width="${w3}" height="${hh}" fill="#008751"/><rect x="${x+w3}" y="${y}" width="${w3}" height="${hh}" fill="#fff"/><rect x="${x+2*w3}" y="${y}" width="${w3}" height="${hh}" fill="#008751"/>`;
+  if(code==="ML") f=`<rect x="${x}" y="${y}" width="${w3}" height="${hh}" fill="#14B53A"/><rect x="${x+w3}" y="${y}" width="${w3}" height="${hh}" fill="#FCD116"/><rect x="${x+2*w3}" y="${y}" width="${w3}" height="${hh}" fill="#CE1126"/>`;
+  if(code==="RW") f=`<rect x="${x}" y="${y}" width="${w}" height="${hh/2}" fill="#00A1DE"/><rect x="${x}" y="${y+hh/2}" width="${w}" height="${hh/4}" fill="#FAD201"/><rect x="${x}" y="${y+hh*3/4}" width="${w}" height="${hh/4}" fill="#20603D"/><circle cx="${x+w*0.8}" cy="${y+hh*0.24}" r="${hh*0.13}" fill="#FAD201"/>`;
+  if(code==="US"){const s=hh/7;for(let i=0;i<7;i++)f+=`<rect x="${x}" y="${y+i*s}" width="${w}" height="${s}" fill="${i%2?"#fff":"#B22234"}"/>`;
+    f+=`<rect x="${x}" y="${y}" width="${w*0.42}" height="${s*4}" fill="#3C3B6E"/>`;
+    for(let r=0;r<3;r++)for(let c=0;c<4;c++)f+=`<circle cx="${x+w*0.06+c*w*0.1}" cy="${y+s*0.6+r*s*1.2}" r=".9" fill="#fff"/>`;}
+  return f+clip;
+}
+function tableFlags(xs){
+  const W=34,H=22,y=262;
+  const set=[["IN"],["ML","RW"],["NG"],["US"]], labels=["India","Mali · Rwanda","Nigeria","USA"];
+  return set.map((codes,i)=>{
+    const total=codes.length*W+(codes.length-1)*6; let x0=xs[i]-total/2;
+    return codes.map((c,j)=>flag(c,x0+j*(W+6),y,W,H)).join("")+`<text x="${xs[i]}" y="${y+H+12}" text-anchor="middle" font-size="10" font-weight="700" fill="#fff" font-family="Figtree, sans-serif" letter-spacing=".05em">${labels[i].toUpperCase()}</text>`;
+  }).join("");
+}
+function scene(){
+  const order=["saniya","fatoumata","kachi","kayla"], xs=[120,255,390,525], floor=300, scale=3.0, tilt=[-7,5,-4,7];
+  const pos={}; order.forEach((id,i)=>{const p=people[id],top=floor-p.inches*scale,r=21;pos[id]={cx:xs[i],cy:top+r+2,top,r,sh:top+r*2+10,w:p.build};});
+  const arm=(x1,y1,x2,y2,c,skin)=>`<path d="M${x1} ${y1} Q${(x1+x2)/2} ${Math.min(y1,y2)-14} ${x2} ${y2}" stroke="${c}" stroke-width="14" fill="none" stroke-linecap="round"/><circle cx="${x2}" cy="${y2}" r="8" fill="${skin}"/>`;
+  let back="",figs="",front="";
+  order.forEach((id,i)=>{const p=people[id],q=pos[id],{cx,cy,r,w}=q;
+    figs+=`<g transform="rotate(${tilt[i]} ${cx} ${cy+r})"><rect x="${cx-5}" y="${cy+r-4}" width="10" height="14" fill="${p.skin}"/>
+      <path d="M${cx-w/2} ${floor} L${cx-w/2} ${cy+r+18} Q${cx-w/2} ${cy+r+6} ${cx-w/2+16} ${cy+r+6} L${cx+w/2-16} ${cy+r+6} Q${cx+w/2} ${cy+r+6} ${cx+w/2} ${cy+r+18} L${cx+w/2} ${floor} Z" fill="${p.color}"/>
+      ${face(p,cx,cy,r)}</g>
+      <text x="${cx}" y="${q.top-14}" text-anchor="middle" font-size="14" font-weight="700" fill="var(--ink)" font-family="Figtree, sans-serif">${p.name}</text>`;});
+  // outer friends wave with a raised arm; the middle two hug the friends beside them
+  const S=pos.saniya,F=pos.fatoumata,K=pos.kachi,Y=pos.kayla;
+  front+=arm(S.cx-S.w/2+6,S.sh+8,S.cx-S.w/2-22,S.top-6,people.saniya.color,people.saniya.skin);
+  front+=arm(Y.cx+Y.w/2-6,Y.sh+8,Y.cx+Y.w/2+24,Y.top-2,people.kayla.color,people.kayla.skin);
+  front+=arm(F.cx+F.w/2-8,F.sh+10,K.cx-K.w/2+10,K.sh+4,people.fatoumata.color,people.fatoumata.skin);
+  front+=arm(F.cx-F.w/2+8,F.sh+10,S.cx+S.w/2-6,S.sh+6,people.fatoumata.color,people.fatoumata.skin);
+  front+=arm(K.cx+K.w/2-8,K.sh+10,Y.cx-Y.w/2+10,Y.sh+6,people.kachi.color,people.kachi.skin);
+  const bulbs=["#E4572E","#F3C843","#5DB37E","#4C7BD9","#C45AB3"];
+  let lights=`<path d="M30 34 Q170 74 320 40 Q470 6 610 44" fill="none" stroke="var(--muted)" stroke-width="1.5" opacity=".6"/>`;
+  for(let i=0;i<15;i++){const t=i/14,x=30+t*580,y=t<.5?52+Math.sin(t*2*Math.PI)*24:62-Math.sin((t-.5)*2*Math.PI)*-2+Math.sin(t*2*Math.PI)*24;lights+=`<circle cx="${x}" cy="${y-10}" r="5" fill="${bulbs[i%5]}"/><circle cx="${x}" cy="${y-10}" r="9" fill="${bulbs[i%5]}" opacity=".18"/>`;}
+  let confetti="";const cc=["#E4572E","#F3C843","#5DB37E","#4C7BD9","#C45AB3"];
+  [[60,110,20],[190,96,-30],[330,104,45],[455,92,10],[585,112,-20],[90,160,60],[600,170,30],[45,210,-15]].forEach(([x,y,a],i)=>confetti+=`<rect x="${x}" y="${y}" width="9" height="4" rx="1.5" fill="${cc[i%5]}" transform="rotate(${a} ${x} ${y})"/>`);
+  const dishes=[[150,"#D9822B"],[255,"#C0392B"],[360,"#E1B12C"],[470,"#6A994E"]].map(([x,c])=>`<ellipse cx="${x}" cy="230" rx="34" ry="9" fill="#fff" stroke="#E8D7B8" stroke-width="2"/><ellipse cx="${x}" cy="226" rx="24" ry="7" fill="${c}"/><path d="M${x-8} 214 q-5 -9 0 -18 M${x+6} 214 q-5 -9 0 -18" stroke="#fff" stroke-width="2.5" fill="none" opacity=".8" stroke-linecap="round"/>`).join("");
+  let stripes="";for(let x=40;x<600;x+=28)stripes+=`<rect x="${x}" y="232" width="14" height="68" fill="#fff" opacity=".18"/>`;
+  return `<svg viewBox="0 0 640 300" width="100%" style="max-height:320px" role="img" aria-label="Priya, Awa, Tobi and Rachel laughing together with arms around each other behind a table of food, under string lights">
+    <defs><linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FCE6C3"/><stop offset="1" stop-color="#F8D2B8"/></linearGradient></defs>
+    <rect x="20" y="20" width="600" height="280" rx="18" fill="url(#sky)"/>
+    ${lights}${confetti}${back}${figs}${front}
+    <rect x="40" y="232" width="560" height="68" rx="6" fill="#D2552E"/>${stripes}
+    <rect x="40" y="232" width="560" height="8" fill="#000" opacity=".12"/>
+    ${dishes}</svg>`;
+}
+
+
+document.getElementById("scene").innerHTML=scene();
+document.getElementById("meiAv").innerHTML=av("mei");
+
+/* Get to know each other */
+const cards={
+  fatoumata:{sub:"From Mali & Rwanda · came as a student in 2019",met:"Campus welcome dinner",miss:"My mom's cooking and big family Sundays",need:"Someone to try new restaurants with",dish:"A family stew I'd love to teach",loves:"Hair, music, long conversations",faith:"I follow Jesus and I'm happy to talk about it if you ever want to."},
+  mei:{sub:"From Chengdu, China · Accounting, first year",met:"Campus welcome dinner",miss:"Hot pot with my cousins and spicy food",need:"A winter coat, and help opening a bank account",dish:"Dumplings, my grandmother's way",loves:"Board games, photography, bubble tea",faith:"I've never been to a church. I'm curious what it's like."}
+};
+const LABELS=[["met","How we met"],["miss","What I miss from home"],["need","What would help me this month"],["dish","A dish I'd love to share"],["loves","Things I love"],["faith","Faith, in my own words"]];
+document.getElementById("cards").innerHTML=[ME,FRIEND].map(id=>`<div class="card"><div class="card-head">${av(id)}<div><b>${people[id].name}${id===ME?" (you)":""}</b><span>${cards[id].sub}</span></div></div>
+  ${LABELS.map(([k,l])=>`<div class="fact"><small>${l}</small><span>${esc(cards[id][k])}</span></div>`).join("")}</div>`).join("");
+
+/* Invitation ideas */
+let ideas=[
+  {id:"coat",title:"Thrift store run for a winter coat",why:"Mei needs a winter coat before it gets cold.",labels:[["fun","Just for fun"],["fun","Practical"]]},
+  {id:"dump",title:"Ask Mei to teach you her grandmother's dumplings",why:"Mei misses home cooking. Let her be the host.",labels:[["host","Mei hosts"],["fun","Just for fun"]]},
+  {id:"bank",title:"Go with Mei to open a bank account",why:"Paperwork is easier with a friend beside you.",labels:[["fun","Practical"]]},
+  {id:"game",title:"Board game night with a few friends",why:"Mei loves board games. Invite people from your own life too.",labels:[["fun","Just for fun"]]},
+  {id:"church",title:"Offer to visit a church service together",why:"Mei said she's curious what church is like. Only if she wants to, and no pressure after.",labels:[["faith","Faith conversation"]]}
+];
+let sent=load("sat-sent",[]);
+let story=load("sat-story",[
+  {when:"Oct 18",what:"Met at the campus welcome dinner",text:"Mei sat alone, so you pulled up a chair."},
+  {when:"Oct 22",what:"Bubble tea after class",text:"Mei showed you photos of Chengdu."},
+  {when:"Oct 25",what:"Mei taught you a card game",text:"She invited you this time.",done:true}
+]);
+function renderIdeas(){
+  document.getElementById("ideas").innerHTML=ideas.map(i=>{const s=sent.includes(i.id);return `<div class="idea ${s?"sent":""}">
+    <div class="labels">${i.labels.map(([c,t])=>`<span class="lab ${c}">${t}</span>`).join("")}</div>
+    <b>${esc(i.title)}</b><div class="why">${esc(i.why)}</div>
+    ${s?`<span class="toast">✓ Invitation sent. It's in your story.</span>`:`<button class="btn small" data-idea="${i.id}" style="justify-self:start">Invite Mei</button>`}</div>`;}).join("");
+  document.querySelectorAll("[data-idea]").forEach(b=>b.onclick=()=>{const i=ideas.find(x=>x.id===b.dataset.idea);
+    sent.push(i.id); story.push({when:"Planned",what:i.title,text:"Waiting for Mei to say yes.",future:true});
+    save("sat-sent",sent); save("sat-story",story); renderIdeas(); renderStory();});
+}
+
+/* Our story + check-in after the last time together */
+let checked=load("sat-checked",false);
+function renderStory(){
+  document.getElementById("timeline").innerHTML=story.map(m=>`<li class="tl ${m.future?"future":""}"><span class="dot" aria-hidden="true"></span><div><small>${esc(m.when)}</small><b>${esc(m.what)}</b>${m.text?`<p>${esc(m.text)}</p>`:""}</div></li>`).join("");
+  const box=document.getElementById("checkin");
+  if(checked){box.innerHTML="";return;}
+  box.innerHTML=`<div class="checkin"><p><strong>You played cards with Mei on Saturday. How did it go?</strong></p>
+    <div class="feel" role="group" aria-label="How did it go?">${["Really good","A little awkward","She seemed down"].map(f=>`<button class="tog" data-feel="${f}">${f}</button>`).join("")}</div>
+    <div id="nextStep"></div></div>`;
+  box.querySelectorAll("[data-feel]").forEach(b=>b.onclick=()=>{
+    box.querySelectorAll("[data-feel]").forEach(x=>x.setAttribute("aria-pressed",x===b));
+    const f=b.dataset.feel;
+    const next=f==="Really good"?"She invited you last time, so a natural next step is inviting her into something from your life, like the thrift store run for her coat.":
+      f==="A little awkward"?"That's normal early on. Try something side by side instead of face to face: cooking, a walk, or errands. Shared tasks make conversation easier.":
+      "Homesickness often hits around now, two months in. Take a moment to pray for Mei, then send a simple message: \"Thinking of you. Want to get hot pot this week?\"";
+    document.getElementById("nextStep").innerHTML=`<div class="next"><strong>A next small step:</strong> ${next}</div><div class="row" style="margin-top:8px"><button class="btn small" id="doneCheck">Got it</button></div>`;
+    document.getElementById("doneCheck").onclick=()=>{checked=true;save("sat-checked",true);renderStory();};
+  });
+}
+
+/* Time with God (private) */
+let journal=load("sat-journal",[{when:"Oct 19",text:"God, thank You for Mei. Help me be a real friend, not someone with an agenda."}]);
+let firstCount=load("sat-first",2);
+function renderJ(){
+  document.getElementById("firstCount").textContent=firstCount;
+  document.getElementById("journal").innerHTML=journal.slice(0,3).map(e=>`<div class="entry"><small>${esc(e.when)} · private</small><p>${esc(e.text)}</p></div>`).join("");
+}
+document.getElementById("saveJ").onclick=()=>{
+  const t=document.getElementById("jText"); if(!t.value.trim()){document.getElementById("jToast").textContent="Write a few words first.";return;}
+  journal.unshift({when:"Today",text:t.value.trim()}); firstCount++; t.value="";
+  save("sat-journal",journal); save("sat-first",firstCount); renderJ();
+  document.getElementById("jToast").textContent="Saved. No one else can see this.";
+};
+
+/* Dishes */
+let recipes=load("sat-recipes",[
+  {by:"mei",name:"Grandmother's dumplings",story:"Mei's grandmother taught her to fold them every Lunar New Year. She's never made them without family before.",q:"Question for the table: What does your family do when everyone is together?"},
+  {by:"fatoumata",name:"Your family stew",example:true,story:"Placeholder: add the dish you'd teach Mei, and who taught you.",q:"Question for the table: Who made you feel welcome when you first arrived?"}
+]);
+function renderRecipes(){
+  document.getElementById("recipes").innerHTML=recipes.map(r=>`<div class="recipe">
+    <div class="row" style="justify-content:space-between"><span class="name">${esc(r.name)}</span>${r.example?'<span class="ex">Example</span>':""}</div>
+    <div class="by">${av(r.by)}From ${people[r.by].name}'s kitchen</div>
+    <p>${esc(r.story)}</p>${r.q?`<p class="q">${esc(r.q)}</p>`:""}</div>`).join("");
+}
+document.getElementById("addR").onclick=()=>{
+  const n=document.getElementById("rName"),s=document.getElementById("rStory"); if(!n.value.trim())return;
+  recipes.push({by:ME,name:n.value.trim(),story:s.value.trim()||"Story coming soon.",q:""});
+  n.value="";s.value="";save("sat-recipes",recipes);renderRecipes();
+};
+
+renderIdeas();renderStory();renderJ();renderRecipes();
+
+/* Onboarding tour */
+const STEPS=[
+  {t:null,title:"It started with “Need a ride?”",text:"In 2019, after a volunteer event, Rachel turned to Awa, an international student, and asked what she was up to next. “Getting my hair done.” “Need a ride?” That one ride turned into a friendship, and four friends became family. Today two of them live in Cincinnati and the other two in two other states. This demo shows how anyone can start a friendship like that. It takes about a minute."},
+  {t:"t-pair",title:"A new friendship",text:"You're Awa now, the one doing the welcoming. You just met Mei, a first-year student from China. Anyone can be in this seat: a neighbor, classmate, coworker, church member, or another student."},
+  {t:"t-know",title:"Get to know each other",text:"You each fill out a short card: what you miss from home, what would help this month, a dish to share, and faith in your own words. Genuine invitations start from what the other person actually needs."},
+  {t:"t-ideas",title:"Invitation ideas",text:"Ideas come from the cards. Each one says honestly what it is: just for fun, practical, a chance for Mei to host, or a faith conversation.",try:"Try it: tap \"Invite Mei\" on any idea. It's added to your story."},
+  {t:"t-story",title:"Our story so far",text:"After time together, a quick check-in suggests a natural next step.",try:"Try it: answer \"How did it go?\" and see the suggestion change."},
+  {t:"t-abide",title:"Time with God first",text:"A private space to pray for your friend before you plan. A new friend should never be a project, and friendship can't replace your own time with God."},
+  {t:"t-cook",title:"Dishes we've shared",text:"Friendship goes both ways. Mei's grandmother's dumplings come with a story and a question for the table."},
+  {t:null,title:"You're all set",text:"Explore freely. Everything you add stays in this browser only. Tap \"Reset demo\" in the top bar to start fresh, or \"Take the tour\" to see this again."}
+];
+let step=0;
+const tour=document.getElementById("tour"),veil=document.getElementById("veil");
+function clearFocus(){document.querySelectorAll(".tour-focus").forEach(e=>e.classList.remove("tour-focus"));}
+function showStep(){
+  const s=STEPS[step]; clearFocus(); tour.hidden=false;
+  document.getElementById("tourStep").textContent=`Step ${step+1} of ${STEPS.length}`;
+  document.getElementById("tourTitle").textContent=s.title;
+  document.getElementById("tourText").textContent=s.text;
+  const tr=document.getElementById("tourTry"); tr.hidden=!s.try; tr.textContent=s.try||"";
+  document.getElementById("tourBack").hidden=step===0;
+  document.getElementById("tourNext").textContent=step===0?"Start the tour":step===STEPS.length-1?"Start exploring":"Next";
+  if(s.t){veil.hidden=true;tour.classList.remove("center");const el=document.getElementById(s.t);el.classList.add("tour-focus");el.scrollIntoView({behavior:"smooth",block:"start"});}
+  else{veil.hidden=false;tour.classList.add("center");}
+  document.getElementById("tourNext").focus({preventScroll:true});
+}
+function endTour(){tour.hidden=true;veil.hidden=true;clearFocus();save("sat-toured",true);}
+document.getElementById("tourNext").onclick=()=>{if(step<STEPS.length-1){step++;showStep();}else endTour();};
+document.getElementById("tourBack").onclick=()=>{if(step>0){step--;showStep();}};
+document.getElementById("tourSkip").onclick=endTour;
+document.getElementById("tourBtn").onclick=()=>{step=0;showStep();};
+document.addEventListener("keydown",e=>{if(e.key==="Escape"&&!tour.hidden)endTour();});
+document.getElementById("resetBtn").onclick=()=>{
+  try{["sat-sent","sat-story","sat-checked","sat-journal","sat-first","sat-recipes","sat-toured"].forEach(k=>localStorage.removeItem(k));}catch(e){}
+  location.reload();
+};
+if(!load("sat-toured",false)){step=0;showStep();}
+</script>
+
+
+</body>
+</html>
